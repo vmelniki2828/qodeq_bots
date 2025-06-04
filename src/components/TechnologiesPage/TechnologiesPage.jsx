@@ -1,130 +1,181 @@
 import React from 'react';
 import styles from './TechnologiesPage.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faMicrophone, 
+  faCode, 
+  faBrain, 
+  faProjectDiagram, 
+  faChartLine, 
+  faPlug, 
+  faLaptopCode, 
+  faCog, 
+  faRobot, 
+  faDesktop 
+} from '@fortawesome/free-solid-svg-icons';
 
-export const TechnologiesPage = () => {
+const TechnologiesPage = () => {
   return (
     <div className={styles.technologiesPage}>
-      <div className={styles.heroSection}>
-        <h1>Наши технологии</h1>
-        <p className={styles.subtitle}>Инновационные AI-решения для автоматизации коммуникаций с клиентами</p>
-      </div>
+      <section className={styles.heroSection}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>Наши технологии</h1>
+          <p className={styles.subtitle}>
+            Инновационные AI-решения для автоматизации коммуникации с клиентами
+          </p>
+        </div>
+      </section>
 
-      <div className={styles.container}>
-        <section className={styles.mainTechnology}>
+      <section className={styles.mainTechSection}>
+        <div className={styles.container}>
           <div className={styles.techContent}>
-            <h2>Искусственный интеллект на страже вашего бизнеса</h2>
-            <p>
-              Наша платформа использует передовые технологии искусственного интеллекта и машинного обучения для создания ботов, неотличимых от живых операторов. Мы обеспечиваем высочайшее качество обслуживания клиентов 24/7 без перерывов и выходных.
+            <h2 className={styles.sectionTitle}>Технологии искусственного интеллекта</h2>
+            <p className={styles.techDescription}>
+              Наша платформа использует передовые технологии искусственного интеллекта и машинного обучения 
+              для создания естественного взаимодействия с пользователями. Наши решения постоянно обучаются 
+              и совершенствуются, адаптируясь к специфике вашего бизнеса.
             </p>
             <div className={styles.techStats}>
               <div className={styles.techStat}>
-                <span className={styles.techStatValue}>98.7%</span>
-                <span className={styles.techStatLabel}>точность распознавания речи</span>
+                <span className={styles.statNumber}>98.7%</span>
+                <span className={styles.statLabel}>Точность распознавания речи</span>
               </div>
               <div className={styles.techStat}>
-                <span className={styles.techStatValue}>31</span>
-                <span className={styles.techStatLabel}>поддерживаемых языков</span>
+                <span className={styles.statNumber}>31</span>
+                <span className={styles.statLabel}>Поддерживаемых языков</span>
               </div>
               <div className={styles.techStat}>
-                <span className={styles.techStatValue}>0.3с</span>
-                <span className={styles.techStatLabel}>среднее время ответа</span>
+                <span className={styles.statNumber}>0.3с</span>
+                <span className={styles.statLabel}>Среднее время ответа</span>
               </div>
             </div>
           </div>
           <div className={styles.techImage}>
-            <div className={styles.aiVisualization}></div>
+            <div className={styles.imageWrapper}>
+              <FontAwesomeIcon icon={faBrain} className={styles.brainIcon} />
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className={styles.techGrid}>
+      <section className={styles.technologiesGridSection}>
+        <div className={styles.container}>
           <h2 className={styles.sectionTitle}>Ключевые технологии</h2>
-
-          <div className={styles.techCards}>
+          <div className={styles.techGrid}>
             <div className={styles.techCard}>
-              <div className={styles.techCardIcon}>🔊</div>
-              <h3>Распознавание речи</h3>
-              <p>Наши алгоритмы распознают речь с точностью до 98.7%, учитывая акценты, диалекты и фоновые шумы.</p>
+              <FontAwesomeIcon icon={faMicrophone} className={styles.techIcon} />
+              <h3 className={styles.techCardTitle}>Распознавание речи</h3>
+              <p className={styles.techCardDescription}>
+                Точное распознавание речи с учетом контекста разговора и шумоподавлением
+              </p>
             </div>
-
             <div className={styles.techCard}>
-              <div className={styles.techCardIcon}>💬</div>
-              <h3>Обработка естественного языка</h3>
-              <p>Система понимает контекст, эмоции и намерения клиента, обеспечивая релевантные ответы.</p>
+              <FontAwesomeIcon icon={faCode} className={styles.techIcon} />
+              <h3 className={styles.techCardTitle}>Обработка естественного языка</h3>
+              <p className={styles.techCardDescription}>
+                Понимание смысла сказанного и генерация релевантных ответов
+              </p>
             </div>
-
             <div className={styles.techCard}>
-              <div className={styles.techCardIcon}>🧠</div>
-              <h3>Машинное обучение</h3>
-              <p>Боты постоянно обучаются на основе новых диалогов, становясь умнее с каждым разговором.</p>
+              <FontAwesomeIcon icon={faBrain} className={styles.techIcon} />
+              <h3 className={styles.techCardTitle}>Машинное обучение</h3>
+              <p className={styles.techCardDescription}>
+                Постоянное улучшение качества взаимодействия на основе новых данных
+              </p>
             </div>
-
             <div className={styles.techCard}>
-              <div className={styles.techCardIcon}>🔄</div>
-              <h3>Адаптивные сценарии</h3>
-              <p>Диалоговые сценарии адаптируются к ходу разговора, обеспечивая естественную коммуникацию.</p>
+              <FontAwesomeIcon icon={faProjectDiagram} className={styles.techIcon} />
+              <h3 className={styles.techCardTitle}>Адаптивные сценарии</h3>
+              <p className={styles.techCardDescription}>
+                Динамические сценарии общения, меняющиеся в зависимости от реакции клиента
+              </p>
             </div>
-
             <div className={styles.techCard}>
-              <div className={styles.techCardIcon}>📊</div>
-              <h3>Аналитика в реальном времени</h3>
-              <p>Подробная аналитика и метрики эффективности работы ботов доступны в режиме реального времени.</p>
+              <FontAwesomeIcon icon={faChartLine} className={styles.techIcon} />
+              <h3 className={styles.techCardTitle}>Аналитика в реальном времени</h3>
+              <p className={styles.techCardDescription}>
+                Анализ и визуализация метрик эффективности коммуникаций
+              </p>
             </div>
-
             <div className={styles.techCard}>
-              <div className={styles.techCardIcon}>🔌</div>
-              <h3>Простая интеграция</h3>
-              <p>API и готовые модули для быстрой интеграции с CRM, колл-центрами и мессенджерами.</p>
+              <FontAwesomeIcon icon={faPlug} className={styles.techIcon} />
+              <h3 className={styles.techCardTitle}>Легкая интеграция</h3>
+              <p className={styles.techCardDescription}>
+                Готовые API и коннекторы для популярных CRM и каналов связи
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className={styles.techProcess}>
-          <h2 className={styles.sectionTitle}>Как это работает</h2>
-          
+      <section className={styles.processSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>Процесс внедрения</h2>
           <div className={styles.processList}>
             <div className={styles.processItem}>
-              <div className={styles.processNumber}>1</div>
+              <div className={styles.processIcon}>
+                <FontAwesomeIcon icon={faLaptopCode} />
+              </div>
               <div className={styles.processContent}>
-                <h3>Разработка индивидуального решения</h3>
-                <p>Мы анализируем потребности вашего бизнеса и создаем персонализированное решение с учетом специфики отрасли.</p>
+                <h3 className={styles.processTitle}>1. Разработка решения</h3>
+                <p className={styles.processDescription}>
+                  Мы создаем кастомизированное решение под ваши бизнес-процессы и задачи
+                </p>
               </div>
             </div>
-            
             <div className={styles.processItem}>
-              <div className={styles.processNumber}>2</div>
+              <div className={styles.processIcon}>
+                <FontAwesomeIcon icon={faCog} />
+              </div>
               <div className={styles.processContent}>
-                <h3>Интеграция и настройка</h3>
-                <p>Интегрируем систему с вашей инфраструктурой и настраиваем сценарии взаимодействия с клиентами.</p>
+                <h3 className={styles.processTitle}>2. Интеграция и настройка</h3>
+                <p className={styles.processDescription}>
+                  Подключаем систему к вашей инфраструктуре и настраиваем все параметры
+                </p>
               </div>
             </div>
-            
             <div className={styles.processItem}>
-              <div className={styles.processNumber}>3</div>
+              <div className={styles.processIcon}>
+                <FontAwesomeIcon icon={faRobot} />
+              </div>
               <div className={styles.processContent}>
-                <h3>Обучение системы</h3>
-                <p>Обучаем AI-ботов на основе ваших данных, скриптов и стандартных ситуаций обслуживания клиентов.</p>
+                <h3 className={styles.processTitle}>3. Обучение системы</h3>
+                <p className={styles.processDescription}>
+                  Тренируем AI на ваших данных для достижения максимальной эффективности
+                </p>
               </div>
             </div>
-            
             <div className={styles.processItem}>
-              <div className={styles.processNumber}>4</div>
+              <div className={styles.processIcon}>
+                <FontAwesomeIcon icon={faDesktop} />
+              </div>
               <div className={styles.processContent}>
-                <h3>Запуск и мониторинг</h3>
-                <p>Запускаем систему в работу и обеспечиваем постоянный мониторинг для оптимизации результатов.</p>
+                <h3 className={styles.processTitle}>4. Мониторинг и поддержка</h3>
+                <p className={styles.processDescription}>
+                  Постоянно следим за работой системы и оперативно вносим улучшения
+                </p>
               </div>
             </div>
           </div>
-        </section>
-        
-        <section className={styles.callToAction}>
-          <h2>Готовы внедрить AI-технологии в свой бизнес?</h2>
-          <p>Получите консультацию и демонстрацию работы наших технологий</p>
-          <div className={styles.ctaButtons}>
-            <button className={styles.ctaButtonPrimary}>Заказать демо</button>
-            <button className={styles.ctaButtonSecondary}>Подробнее о внедрении</button>
+        </div>
+      </section>
+
+      <section className={styles.ctaSection}>
+        <div className={styles.container}>
+          <div className={styles.ctaContent}>
+            <h2 className={styles.ctaTitle}>Готовы начать работу с нашими технологиями?</h2>
+            <p className={styles.ctaDescription}>
+              Свяжитесь с нами, чтобы узнать, как наши решения могут помочь вашему бизнесу
+            </p>
+            <div className={styles.ctaButtons}>
+              <button className={styles.demoButton}>Запросить демо</button>
+              <button className={styles.infoButton}>Узнать о внедрении</button>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
-}; 
+};
+
+export default TechnologiesPage; 

@@ -1,11 +1,14 @@
 .header {
-  background: #1a1a1a;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+  z-index: 1001;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
 }
 
 .header-container {

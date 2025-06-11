@@ -1,0 +1,216 @@
+.scroll-container {
+  height: 400vh; /* 4 секции по 100vh */
+  position: relative;
+}
+
+.scroll-section {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+.scroll-section.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.section-content {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Индикаторы прогресса */
+.scroll-indicators {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-5px);
+}
+
+.indicator.active {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-10px);
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.indicator.active .indicator-dot {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.indicator-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.indicator:hover .indicator-label,
+.indicator.active .indicator-label {
+  opacity: 1;
+}
+
+/* Прогресс бар */
+.progress-bar {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.8));
+  border-radius: 2px;
+  transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Анимации появления контента */
+.scroll-section .section-content > * {
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0.2s;
+}
+
+.scroll-section.active .section-content > * {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Задержки для последовательного появления элементов */
+.scroll-section .section-content > *:nth-child(1) { transition-delay: 0.1s; }
+.scroll-section .section-content > *:nth-child(2) { transition-delay: 0.2s; }
+.scroll-section .section-content > *:nth-child(3) { transition-delay: 0.3s; }
+.scroll-section .section-content > *:nth-child(4) { transition-delay: 0.4s; }
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .scroll-indicators {
+    right: 1rem;
+  }
+  
+  .progress-bar {
+    left: 1rem;
+    height: 150px;
+  }
+  
+  .indicator-label {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-indicators {
+    bottom: 2rem;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+  
+  .progress-bar {
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .indicator {
+    padding: 0.3rem;
+  }
+  
+  .indicator-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Отключаем микроскролл на мобильных */
+  .scroll-container {
+    height: auto;
+  }
+  
+  .scroll-section {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-section .section-content > * {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Плавное появление при загрузке */
+.scroll-container {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} 

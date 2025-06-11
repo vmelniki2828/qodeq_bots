@@ -1,0 +1,224 @@
+.multichannel-section {
+  padding: 0;
+  background: transparent;
+  color: #ffffff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.multichannel-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.multichannel-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 2.5rem;
+  line-height: 1.2;
+}
+
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.channel-card {
+  background: #2a2a2a;
+  border-right: 1px solid #3a3a3a;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 160px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.channel-card:last-child {
+  border-right: none;
+}
+
+.channel-card.highlight {
+  background: #ffd700;
+  color: #1a1a1a;
+}
+
+.channel-card:hover {
+  background: #3a3a3a;
+}
+
+.channel-card.highlight:hover {
+  background: #ffed4a;
+}
+
+.channel-header {
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.channel-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.channel-card.highlight .channel-title {
+  color: #1a1a1a;
+}
+
+.channel-icon-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+
+.channel-icons-row {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+
+.channel-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.channel-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* Цвета для телефона */
+.channel-icon.phone {
+  background: #d4a574;
+  color: #1a1a1a;
+}
+
+/* Цвета для мессенджеров */
+.channel-icon.messenger.whatsapp {
+  background: #25D366;
+  color: #ffffff;
+}
+
+.channel-icon.messenger.telegram {
+  background: #0088cc;
+  color: #ffffff;
+}
+
+.channel-icon.messenger.viber {
+  background: #665CAC;
+  color: #ffffff;
+}
+
+/* Цвета для соцсетей */
+.channel-icon.social.vk {
+  background: #0077FF;
+  color: #ffffff;
+}
+
+.channel-icon.social.facebook {
+  background: #1877F2;
+  color: #ffffff;
+}
+
+.channel-icon.social.instagram {
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  color: #ffffff;
+}
+
+/* Цвета для email и SMS */
+.channel-icon.email {
+  background: #1a1a1a;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+}
+
+.channel-icon.sms {
+  background: #1a1a1a;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+}
+
+/* Hover эффекты */
+.channel-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .multichannel-title {
+    font-size: 2.2rem;
+  }
+  
+  .channels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+  }
+  
+  .channel-card {
+    border-right: none;
+    border-bottom: 1px solid #3a3a3a;
+  }
+  
+  .channel-card:nth-child(2n) {
+    border-right: none;
+  }
+  
+  .channel-card:last-child,
+  .channel-card:nth-last-child(2) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .multichannel-section {
+    padding: 0 0 4rem 0;
+  }
+  
+  .multichannel-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .channels-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .channel-card {
+    text-align: center;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid #3a3a3a;
+    min-height: 140px;
+  }
+  
+  .channel-card:last-child {
+    border-bottom: none;
+  }
+  
+  .channel-icons-row {
+    justify-content: center;
+  }
+} 

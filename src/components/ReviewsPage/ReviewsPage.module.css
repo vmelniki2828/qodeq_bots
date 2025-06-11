@@ -1,0 +1,206 @@
+.reviewsPage {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.heroSection {
+  padding: 80px 0;
+  background: linear-gradient(to right, #111111, #1e1e1e);
+  text-align: center;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #ffffff, #a0a0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #cccccc;
+}
+
+/* Stats Section */
+.statsSection {
+  padding: 40px 0;
+  background-color: #151515;
+}
+
+.statsGrid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.statItem {
+  text-align: center;
+  padding: 20px;
+  min-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-5px);
+}
+
+.statNumber {
+  font-size: 42px;
+  font-weight: 800;
+  color: #3a86ff;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.statLabel {
+  font-size: 16px;
+  color: #a0a0a0;
+}
+
+/* Reviews Section */
+.reviewsSection {
+  padding: 80px 0;
+  background-color: #0d0d0d;
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.reviewCard {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.reviewCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.reviewHeader {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.reviewerPhoto {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.reviewerInfo {
+  flex: 1;
+}
+
+.reviewerName {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.reviewerPosition {
+  font-size: 14px;
+  color: #a0a0a0;
+  margin-bottom: 2px;
+}
+
+.reviewerCompany {
+  font-size: 14px;
+  color: #3a86ff;
+  margin-bottom: 8px;
+}
+
+.rating {
+  display: flex;
+  margin-top: 5px;
+}
+
+.starIcon {
+  color: #ffc107;
+  margin-right: 2px;
+}
+
+.reviewText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 80px 0;
+  background: linear-gradient(to right, #111111, #1e1e1e);
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.ctaSubtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #a0a0a0;
+}
+
+.ctaButton {
+  background-color: #3a86ff;
+  color: white;
+  font-weight: 600;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #2670e8;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .title {
+    font-size: 32px;
+  }
+  
+  .ctaTitle {
+    font-size: 28px;
+  }
+} 

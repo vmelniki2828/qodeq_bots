@@ -1,0 +1,348 @@
+.technologiesPage {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.heroSection {
+  padding: 80px 0;
+  background: linear-gradient(to right, #111111, #1e1e1e);
+  text-align: center;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #ffffff, #a0a0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #cccccc;
+}
+
+/* Main Tech Section */
+.mainTechSection {
+  padding: 80px 0;
+  background-color: #0d0d0d;
+}
+
+.mainTechSection .container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.techContent {
+  flex: 1;
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.techDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #cccccc;
+}
+
+.techStats {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.techStat {
+  flex: 1;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.techStat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.statNumber {
+  font-size: 36px;
+  font-weight: 800;
+  color: #3a86ff;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.techImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(58, 134, 255, 0.1);
+  border-radius: 50%;
+  position: relative;
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(58, 134, 255, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.brainIcon {
+  font-size: 120px;
+  color: #3a86ff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+/* Technologies Grid Section */
+.technologiesGridSection {
+  padding: 80px 0;
+  background-color: #151515;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.techCard {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.techCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.techIcon {
+  font-size: 40px;
+  color: #3a86ff;
+  margin-bottom: 20px;
+}
+
+.techCardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.techCardDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #a0a0a0;
+}
+
+/* Process Section */
+.processSection {
+  padding: 80px 0;
+  background-color: #0d0d0d;
+}
+
+.processList {
+  margin-top: 50px;
+}
+
+.processItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.processItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.processIcon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(58, 134, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 24px;
+  color: #3a86ff;
+}
+
+.processContent {
+  flex: 1;
+}
+
+.processTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.processDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #a0a0a0;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 80px 0;
+  background: linear-gradient(to right, #111111, #1e1e1e);
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.ctaDescription {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #a0a0a0;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.demoButton {
+  background-color: #3a86ff;
+  color: white;
+  font-weight: 600;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.demoButton:hover {
+  background-color: #2670e8;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+}
+
+.infoButton {
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  padding: 14px 30px;
+  border: 1px solid #3a86ff;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.infoButton:hover {
+  background-color: rgba(58, 134, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .mainTechSection .container {
+    flex-direction: column;
+  }
+  
+  .techStats {
+    flex-direction: column;
+  }
+  
+  .techGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+  
+  .ctaTitle {
+    font-size: 28px;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+  }
+  
+  .techGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sectionTitle {
+    font-size: 28px;
+  }
+} 

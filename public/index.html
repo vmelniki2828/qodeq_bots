@@ -57,28 +57,44 @@
     </script>
 
     <script>
-  (function(d,t) {
-    var BASE_URL="https://chatwoot.qodeq.net";
-    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=BASE_URL+"/packs/js/sdk.js";
+  window.chatwootSettings = {
+    hideMessageBubble: false,
+    showUnreadMessagesDialog: false,
+    position: "right",
+    locale: "en",
+    useBrowserLanguage: false,
+    type: "standard",
+    darkMode: "auto"
+  };
+</script>
+
+<!-- Подключение SDK Chatwoot -->
+<script>
+  (function(d, t) {
+    var BASE_URL = "https://chatwoot.qodeq.net";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
     g.defer = true;
     g.async = true;
-    s.parentNode.insertBefore(g,s);
-    g.onload=function(){
+    s.parentNode.insertBefore(g, s);
+    g.onload = function() {
       window.chatwootSDK.run({
         websiteToken: '3ArhuAVfHymipEbfmF1n2mXr',
         baseUrl: BASE_URL
-      })
-      if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
-        window.$chatwoot.reset();
+      });
+    };
+  })(document, "script");
 
-        // Скрываем виджет (возвращаем к старту — закрытому)
-        if(typeof window.$chatwoot.hide === 'function') {
-          window.$chatwoot.hide();
-        }
+  // После загрузки SDK — ставим обработчики
+  window.addEventListener("chatwoot:ready", function() {
+    window.addEventListener("chatwoot:on-bubble-toggle", function(e) {
+      // Если чат был закрыт — делаем reset + hide
+      if (!e.detail.isOpen) {
+        window.$chatwoot.reset();
+        window.$chatwoot.hide();
       }
-    }
-  })(document,"script");
+    });
+  });
 </script>
     <!-- End Single Page Apps for GitHub Pages -->
   </head>

@@ -74,14 +74,14 @@
         baseUrl: BASE_URL
       });
 
-      // if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
-      //   window.$chatwoot.reset();
+      if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
+        window.$chatwoot.reset();
 
-      //   // Скрываем виджет (возвращаем к старту — закрытому)
-      //   if(typeof window.$chatwoot.hide === 'function') {
-      //     window.$chatwoot.hide();
-      //   }
-      // }
+        // Скрываем виджет (возвращаем к старту — закрытому)
+        if(typeof window.$chatwoot.hide === 'function') {
+          window.$chatwoot.hide();
+        }
+      }
     }
   })(document,"script");
 </script>

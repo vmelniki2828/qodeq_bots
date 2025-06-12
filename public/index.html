@@ -57,7 +57,7 @@
     </script>
 
    <script>
-  // 1. Настройки перед загрузкой SDK
+  // 1. Настройки до загрузки SDK
   window.chatwootSettings = {
     hideMessageBubble: false,
     showUnreadMessagesDialog: false,
@@ -68,34 +68,36 @@
 </script>
 
 <script>
-  (function(d, t) {
-    const BASE_URL = "https://chatwoot.qodeq.net";
-    const g = d.createElement(t);
-    const s = d.getElementsByTagName(t)[0];
-    g.src = BASE_URL + "/packs/js/sdk.js";
-    g.defer = true;
-    g.async = true;
-    s.parentNode.insertBefore(g, s);
-    g.onload = () => {
-      // 2. Инициализация виджета
-      window.chatwootSDK.run({
-        websiteToken: '3ArhuAVfHymipEbfmF1n2mXr',
-        baseUrl: BASE_URL
-      });
-    };
-  })(document, "script");
+(function(d, t) {
+  const BASE_URL = "https://chatwoot.qodeq.net";
+  const g = d.createElement(t);
+  const s = d.getElementsByTagName(t)[0];
+  g.src = BASE_URL + "/packs/js/sdk.js";
+  g.defer = true;
+  g.async = true;
+  s.parentNode.insertBefore(g, s);
 
-  // 3. Логика: слушаем событие chatwoot:ready
-  window.addEventListener("chatwoot:ready", () => {
-    window.addEventListener("chatwoot:on-bubble-toggle", e => {
-      // Когда виджет закрывается пользователем:
-      if (!e.detail.isOpen) {
-        window.$chatwoot.reset();
-        window.$chatwoot.hide();
-      }
+  g.onload = () => {
+    window.chatwootSDK.run({
+      websiteToken: '3ArhuAVfHymipEbfmF1n2mXr',
+      baseUrl: BASE_URL
     });
+  };
+})(document, "script");
+
+// 2. После загрузки SDK — настройка логики
+window.addEventListener("chatwoot:ready", () => {
+  window.addEventListener("chatwoot:on-bubble-toggle", e => {
+    if (!e.detail.isOpen) {
+      // Скрываем сам пузырёк (widget launcher)
+      window.$chatwoot.toggleBubbleVisibility("hide"); // :contentReference[oaicite:1]{index=1}
+      // Сбрасываем историю и очистим conversation
+      window.$chatwoot.reset();
+    }
   });
+});
 </script>
+
 
     <!-- End Single Page Apps for GitHub Pages -->
   </head>

@@ -76,6 +76,32 @@
         }
       })(document,"script");
     </script>
+<script>
+  let chatClosed = false;
+
+  window.addEventListener("chatwoot:ready", function () {
+    const hideMessages = () => {
+      // Удаляет сообщения из DOM при открытии виджета
+      const messages = document.querySelectorAll(".woot--message");
+      messages.forEach(msg => msg.remove());
+    };
+
+    // Запоминаем, что чат был закрыт
+    $chatwoot.on("widget:closed", function () {
+      localStorage.setItem("chat_closed", "true");
+    });
+
+    // При открытии виджета — очищаем историю, если ранее закрывали
+    $chatwoot.on("widget:opened", function () {
+      const wasClosed = localStorage.getItem("chat_closed");
+      if (wasClosed === "true") {
+        hideMessages();
+        localStorage.removeItem("chat_closed");
+      }
+    });
+  });
+</script>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

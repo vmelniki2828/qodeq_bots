@@ -55,13 +55,8 @@
         }
       })(window.location);
     </script>
-    <!-- End Single Page Apps for GitHub Pages -->
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
 
-<script>
+    <script>
   (function(d,t) {
     var BASE_URL="https://chatwoot.qodeq.net";
     var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -74,17 +69,25 @@
         websiteToken: '3ArhuAVfHymipEbfmF1n2mXr',
         baseUrl: BASE_URL
       })
-      // if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
-      //   window.$chatwoot.reset();
+      if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
+        window.$chatwoot.reset();
 
-      //   // Скрываем виджет (возвращаем к старту — закрытому)
-      //   if(typeof window.$chatwoot.hide === 'function') {
-      //     window.$chatwoot.hide();
-      //   }
-      // }
+        // Скрываем виджет (возвращаем к старту — закрытому)
+        if(typeof window.$chatwoot.hide === 'function') {
+          window.$chatwoot.hide();
+        }
+      }
     }
   })(document,"script");
 </script>
+    <!-- End Single Page Apps for GitHub Pages -->
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+
+
 
     
 <!--     <script>

@@ -57,7 +57,7 @@
     </script>
 
    <script>
-  // 1. Настройки до загрузки SDK
+  // Настройки перед SDK
   window.chatwootSettings = {
     hideMessageBubble: false,
     showUnreadMessagesDialog: false,
@@ -85,18 +85,28 @@
   };
 })(document, "script");
 
-// 2. После загрузки SDK — настройка логики
+// Помощник для удаления cookie cw_conversation_<websiteToken>
+function eraseConversationCookie() {
+  const token = window.$chatwoot.websiteToken;
+  const key = `cw_conversation_${token}`;
+  document.cookie = key + '=; Max-Age=0; path=/;'; 
+}
+
+// Логика при готовности виджета
 window.addEventListener("chatwoot:ready", () => {
   window.addEventListener("chatwoot:on-bubble-toggle", e => {
     if (!e.detail.isOpen) {
-      // Скрываем сам пузырёк (widget launcher)
-      window.$chatwoot.toggleBubbleVisibility("hide"); // :contentReference[oaicite:1]{index=1}
-      // Сбрасываем историю и очистим conversation
+      // Скрыть пузырек и сбросить
+      window.$chatwoot.toggleBubbleVisibility("hide");
       window.$chatwoot.reset();
+
+      // Удалить cookie разговора
+      eraseConversationCookie();
     }
   });
 });
 </script>
+
 
 
     <!-- End Single Page Apps for GitHub Pages -->

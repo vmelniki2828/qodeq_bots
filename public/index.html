@@ -62,28 +62,31 @@
     <div id="root"></div>
     <script>
   (function(d,t) {
-    var BASE_URL="https://chatwoot.qodeq.net";
-    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=BASE_URL+"/packs/js/sdk.js";
+    var BASE_URL = "https://chatwoot.qodeq.net";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
     g.defer = true;
     g.async = true;
-    s.parentNode.insertBefore(g,s);
-    g.onload=function(){
-      window.chatwootSDK.run({
-        websiteToken: 'ztQxT4CUwCtsT9LY6hQyjA1Y',
-        baseUrl: BASE_URL
-      });
+    s.parentNode.insertBefore(g, s);
 
-      if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
+    g.onload = function() {
+      if (!window.chatwootSDK?.isRunning) {
+        window.chatwootSDK.run({
+          websiteToken: 'ztQxT4CUwCtsT9LY6hQyjA1Y',
+          baseUrl: BASE_URL
+        });
+        window.chatwootSDK.isRunning = true;  // метка, что SDK запущен
+      }
+
+      // Если нужно — сбросить виджет без повторного запуска SDK
+      if (window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
         window.$chatwoot.reset();
-
-        // Скрываем виджет (возвращаем к старту — закрытому)
-        if(typeof window.$chatwoot.hide === 'function') {
+        if (typeof window.$chatwoot.hide === 'function') {
           window.$chatwoot.hide();
         }
       }
     }
-  })(document,"script");
+  })(document, "script");
 </script>
 
 

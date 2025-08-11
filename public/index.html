@@ -55,24 +55,90 @@
         }
       })(window.location);
     </script>
+
+   <script>
+  // Настройки перед SDK
+  window.chatwootSettings = {
+    hideMessageBubble: false,
+    showUnreadMessagesDialog: false,
+    position: "right",
+    type: "standard",
+    darkMode: "auto"
+  };
+</script>
+
+<script>
+(function(d, t) {
+  const BASE_URL = "https://chatwoot.qodeq.net";
+  const g = d.createElement(t);
+  const s = d.getElementsByTagName(t)[0];
+  g.src = BASE_URL + "/packs/js/sdk.js";
+  g.defer = true;
+  g.async = true;
+  s.parentNode.insertBefore(g, s);
+
+  g.onload = () => {
+    window.chatwootSDK.run({
+      websiteToken: '3ArhuAVfHymipEbfmF1n2mXr',
+      baseUrl: BASE_URL
+    });
+  };
+})(document, "script");
+
+// Помощник для удаления cookie cw_conversation_<websiteToken>
+function eraseConversationCookie() {
+  const token = window.$chatwoot.websiteToken;
+  const key = `cw_conversation_${token}`;
+  document.cookie = key + '=; Max-Age=0; path=/;'; 
+}
+
+// Логика при готовности виджета
+window.addEventListener("chatwoot:ready", () => {
+  window.addEventListener("chatwoot:on-bubble-toggle", e => {
+    if (!e.detail.isOpen) {
+      // Скрыть пузырек и сбросить
+      window.$chatwoot.toggleBubbleVisibility("hide");
+      window.$chatwoot.reset();
+
+      // Удалить cookie разговора
+      eraseConversationCookie();
+    }
+  });
+});
+</script>
+
+
+
     <!-- End Single Page Apps for GitHub Pages -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script>
-      (function(d,t) {
-        var BASE_URL="https://chatwoot.qodeq.net";
-        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=BASE_URL+"/packs/js/sdk.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g,s);
-        g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: 'ztQxT4CUwCtsT9LY6hQyjA1Y',
-            baseUrl: BASE_URL
-          })
+
+
+
+
+    
+<!--     <script>
+  (function(d,t) {
+    var BASE_URL="https://chatwoot.qodeq.net";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'ztQxT4CUwCtsT9LY6hQyjA1Y',
+        baseUrl: BASE_URL
+      });
+
+      if(window.$chatwoot && typeof window.$chatwoot.reset === 'function') {
+        window.$chatwoot.reset();
+
+        // Скрываем виджет (возвращаем к старту — закрытому)
+        if(typeof window.$chatwoot.hide === 'function') {
+          window.$chatwoot.hide();
         }
       })(document,"script");
     </script>

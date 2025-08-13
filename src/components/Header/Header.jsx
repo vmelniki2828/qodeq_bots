@@ -28,8 +28,6 @@ const Header = () => {
   const location = useLocation();
   const { 
     scrollToHome, 
-    scrollToCases, 
-    scrollToContact,
     currentSection 
   } = useScrollContext();
 
@@ -158,33 +156,35 @@ const Header = () => {
                     <FontAwesomeIcon icon={faArrowRight} />
                   </div>
                 </Link>
+                
+
               </div>
             </div>
           </div>
           
-          <button 
-            className={`${styles.navLink} ${currentSection === 3 ? styles.active : ''}`}
-            onClick={() => handleNavigation(scrollToCases)}
+          <Link 
+            to="/cases" 
+            className={`${styles.navLink} ${location.pathname === '/cases' ? styles.active : ''}`}
           >
             Кейсы
-          </button>
+          </Link>
           
           <Link to="/prices" className={styles.navLink}>
             Цены
           </Link>
           
-          <button 
-            className={`${styles.navLink} ${currentSection === 4 ? styles.active : ''}`}
-            onClick={() => handleNavigation(scrollToContact)}
+          <Link 
+            to="/contacts" 
+            className={`${styles.navLink} ${location.pathname === '/contacts' ? styles.active : ''}`}
           >
             Контакты
-          </button>
+          </Link>
         </nav>
         
-        <button className={styles.connectButton}>
+        <Link to="/contacts" className={styles.connectButton}>
           <FontAwesomeIcon icon={faRocket} />
           Связаться
-        </button>
+        </Link>
         
         <button className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
           <FontAwesomeIcon icon={faBars} />
@@ -259,41 +259,38 @@ const Header = () => {
                   </div>
                   <span>Автоответчик</span>
                 </Link>
+
               </div>
             </div>
             
-            <button 
-              className={`${styles.mobileNavLink} ${currentSection === 3 ? styles.active : ''}`}
-              onClick={() => {
-                handleNavigation(scrollToCases);
-                closeMobileMenu();
-              }}
+            <Link 
+              to="/cases" 
+              className={`${styles.mobileNavLink} ${location.pathname === '/cases' ? styles.active : ''}`}
+              onClick={closeMobileMenu}
             >
               <FontAwesomeIcon icon={faBriefcase} />
               Кейсы
-            </button>
+            </Link>
             
             <Link to="/prices" className={styles.mobileNavLink} onClick={closeMobileMenu}>
               <FontAwesomeIcon icon={faFileInvoiceDollar} />
               Цены
             </Link>
             
-            <button 
-              className={`${styles.mobileNavLink} ${currentSection === 4 ? styles.active : ''}`}
-              onClick={() => {
-                handleNavigation(scrollToContact);
-                closeMobileMenu();
-              }}
+            <Link 
+              to="/contacts" 
+              className={`${styles.mobileNavLink} ${location.pathname === '/contacts' ? styles.active : ''}`}
+              onClick={closeMobileMenu}
             >
               <FontAwesomeIcon icon={faPhoneAlt} />
               Контакты
-            </button>
+            </Link>
           </nav>
           
-          <button className={styles.mobileConnectButton}>
+          <Link to="/contacts" className={styles.mobileConnectButton} onClick={closeMobileMenu}>
             <FontAwesomeIcon icon={faRocket} />
             Связаться
-          </button>
+          </Link>
         </div>
       </div>
     </header>

@@ -16,8 +16,10 @@ import {
   faBrain,
   faChartBar,
   faPlay,
-  faBuilding
+  faBuilding,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -320,39 +322,25 @@ const HomePage = () => {
               </div>
               <h3 className={styles.caseTitle}>Онлайн-магазин "TechStore"</h3>
               <p className={styles.caseDescription}>
-                Внедрили AI чат-бота для автоматизации поддержки клиентов. Бот обрабатывает 80% запросов самостоятельно, а сложные случаи передает операторам с полным контекстом.
+                AI чат-бот обрабатывает 80% запросов самостоятельно, сокращая время ответа с 2 часов до 30 секунд.
               </p>
               <div className={styles.caseMetrics}>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faClock} />
-                    Время ответа сократилось с 2 часов до 30 секунд
+                    Время ответа: с 2 часов до 30 секунд
                   </span>
                 </div>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faDollarSign} />
-                    Экономия на поддержке: $45,000 в месяц
+                    Экономия: $45,000 в месяц
                   </span>
                 </div>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faUsers} />
-                    Удовлетворенность клиентов выросла на 78%
-                  </span>
-                </div>
-              </div>
-              <div className={styles.caseResults}>
-                <div className={styles.caseResult}>
-                  <span>
-                    <FontAwesomeIcon icon={faRocket} />
-                    Запуск за 3 недели
-                  </span>
-                </div>
-                <div className={styles.caseResult}>
-                  <span>
-                    <FontAwesomeIcon icon={faChartBar} />
-                    ROI: 340% за 6 месяцев
+                    Удовлетворенность: +78%
                   </span>
                 </div>
               </div>
@@ -367,39 +355,25 @@ const HomePage = () => {
               </div>
               <h3 className={styles.caseTitle}>Телеком-оператор "ConnectPlus"</h3>
               <p className={styles.caseDescription}>
-                Разработали комплексную систему Voice QA для контроля качества обслуживания в колл-центре. AI анализирует каждый звонок и выявляет нарушения стандартов обслуживания.
+                Voice QA система анализирует 100% звонков, повышая качество обслуживания на 65%.
               </p>
               <div className={styles.caseMetrics}>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faShieldAlt} />
-                    100% проверка качества всех звонков
+                    100% проверка качества звонков
                   </span>
                 </div>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faChartLine} />
-                    Качество обслуживания выросло на 65%
+                    Качество обслуживания: +65%
                   </span>
                 </div>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faDollarSign} />
-                    Снижение затрат на контроль: $120,000 в год
-                  </span>
-                </div>
-              </div>
-              <div className={styles.caseResults}>
-                <div className={styles.caseResult}>
-                  <span>
-                    <FontAwesomeIcon icon={faRocket} />
-                    Внедрение за 4 недели
-                  </span>
-                </div>
-                <div className={styles.caseResult}>
-                  <span>
-                    <FontAwesomeIcon icon={faChartBar} />
-                    ROI: 280% за 8 месяцев
+                    Экономия: $120,000 в год
                   </span>
                 </div>
               </div>
@@ -414,13 +388,13 @@ const HomePage = () => {
               </div>
               <h3 className={styles.caseTitle}>Банк "SmartFinance"</h3>
               <p className={styles.caseDescription}>
-                Внедрили AI-систему для автоматической обработки кредитных заявок и проверки документов. Система анализирует риски, проверяет подлинность документов и принимает решения за секунды.
+                AI-система обрабатывает кредитные заявки за 15 минут вместо 3 дней с точностью 94%.
               </p>
               <div className={styles.caseMetrics}>
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faClock} />
-                    Время обработки заявки: с 3 дней до 15 минут
+                    Время обработки: с 3 дней до 15 минут
                   </span>
                 </div>
                 <div className={styles.caseMetric}>
@@ -432,25 +406,17 @@ const HomePage = () => {
                 <div className={styles.caseMetric}>
                   <span>
                     <FontAwesomeIcon icon={faDollarSign} />
-                    Снижение операционных расходов на 45%
-                  </span>
-                </div>
-              </div>
-              <div className={styles.caseResults}>
-                <div className={styles.caseResult}>
-                  <span>
-                    <FontAwesomeIcon icon={faRocket} />
-                    Запуск за 6 недель
-                  </span>
-                </div>
-                <div className={styles.caseResult}>
-                  <span>
-                    <FontAwesomeIcon icon={faChartBar} />
-                    ROI: 420% за 12 месяцев
+                    Снижение расходов: 45%
                   </span>
                 </div>
               </div>
             </div>
+          </div>
+          <div className={styles.casesCTA}>
+            <Link to="/cases" className={styles.casesButton}>
+              Посмотреть все кейсы
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Link>
           </div>
         </div>
       </section>

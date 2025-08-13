@@ -134,18 +134,39 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .scrollIndicator {
-    display: none;
+@media (max-width: 1200px) {
+  .scrollContainer {
+    scroll-snap-type: none;
+    height: auto;
   }
   
   .scrollProgress {
-    height: 2px;
+    display: none;
+  }
+  
+  .scrollIndicator {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .scrollContainer {
+    scroll-snap-type: none;
+    height: auto;
+  }
+  
+  .scrollProgress {
+    display: none;
+  }
+  
+  .scrollIndicator {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .scrollContainer {
     scroll-snap-type: none;
+    height: auto;
   }
 } 

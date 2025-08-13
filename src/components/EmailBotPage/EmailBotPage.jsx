@@ -1,109 +1,223 @@
-import React from 'react';
-import styles from './EmailBotPage.module.css';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faRobot, 
-  faCheckCircle, 
-  faClock,
-  faChartLine,
-  faUsers,
+  faEnvelope, 
+  faMicrophone, 
+  faBrain, 
+  faChartLine, 
+  faUsers, 
+  faClock, 
+  faShieldAlt,
+  faRocket,
+  faPlay,
+  faArrowRight,
+  faLightbulb,
   faCog,
-  faReply,
-  faFilter,
-  faDatabase
+  faStar,
+  faBuilding,
+  faUserGraduate,
+  faCartShopping,
+  faCheckCircle,
+  faExclamationTriangle,
+  faEye,
+  faChartBar
 } from '@fortawesome/free-solid-svg-icons';
+import styles from './EmailBotPage.module.css';
 
 const EmailBotPage = () => {
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  const features = [
+    {
+      icon: faBrain,
+      title: "AI Обработка писем",
+      description: "Продвинутые алгоритмы понимания контекста и автоматического ответа на email"
+    },
+    {
+      icon: faEnvelope,
+      title: "Мониторинг почты",
+      description: "Автоматическая обработка всех входящих писем в реальном времени"
+    },
+    {
+      icon: faMicrophone,
+      title: "Умные ответы",
+      description: "Высокоточное понимание запросов и генерация релевантных ответов"
+    },
+    {
+      icon: faCog,
+      title: "Простая интеграция",
+      description: "Быстрое подключение к вашим почтовым сервисам и CRM-системам"
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: faUsers,
+      title: "Повышение качества",
+      description: "Улучшение стандартов обслуживания клиентов на основе автоматических ответов",
+      metric: "+70%"
+    },
+    {
+      icon: faClock,
+      title: "Быстрая обработка",
+      description: "Автоматический ответ на письмо за 30 секунд вместо часов ожидания",
+      metric: "30 сек"
+    },
+    {
+      icon: faChartLine,
+      title: "Рост эффективности",
+      description: "Увеличение конверсии за счет мгновенных ответов на email",
+      metric: "+50%"
+    },
+    {
+      icon: faShieldAlt,
+      title: "Контроль качества",
+      description: "100% покрытие обработки всех писем без пропусков",
+      metric: "100%"
+    }
+  ];
+
+  const useCases = [
+    {
+      icon: faCartShopping,
+      title: "E-commerce",
+      description: "Автоматические ответы на вопросы о товарах, заказах и доставке"
+    },
+    {
+      icon: faBuilding,
+      title: "Корпоративные услуги",
+      description: "Обработка запросов клиентов и информационных писем"
+    },
+    {
+      icon: faUserGraduate,
+      title: "Образование",
+      description: "Автоматические ответы на вопросы студентов и абитуриентов"
+    },
+    {
+      icon: faBuilding,
+      title: "Здравоохранение",
+      description: "Обработка запросов на запись к врачу и информационные письма"
+    }
+  ];
+
   return (
     <div className={styles.emailBotPage}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>
+              <FontAwesomeIcon icon={faEnvelope} />
+              <span>AI Автоответчик</span>
+            </div>
             <h1 className={styles.heroTitle}>
-              Автоответчик на почту
+              Автоматическая обработка email писем
             </h1>
             <p className={styles.heroSubtitle}>
-              Автоматизируйте обработку email-сообщений и повысьте эффективность коммуникации с клиентами
+              Используйте AI для мгновенной обработки всех входящих писем, автоматических ответов 
+              и повышения эффективности вашей команды поддержки
             </p>
-            <div className={styles.heroFeatures}>
-              <div className={styles.feature}>
-                <FontAwesomeIcon icon={faReply} />
-                <span>Автоматические ответы</span>
+            <div className={styles.heroStats}>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>+70%</div>
+                <div className={styles.statLabel}>Качество</div>
               </div>
-              <div className={styles.feature}>
-                <FontAwesomeIcon icon={faFilter} />
-                <span>Умная классификация</span>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>-90%</div>
+                <div className={styles.statLabel}>Время ответа</div>
               </div>
-              <div className={styles.feature}>
-                <FontAwesomeIcon icon={faDatabase} />
-                <span>Интеграция с CRM</span>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>100%</div>
+                <div className={styles.statLabel}>Покрытие</div>
               </div>
             </div>
-            <button className={styles.ctaButton}>
-              Попробовать демо
-            </button>
+            <div className={styles.heroButtons}>
+              <button className={styles.primaryButton}>
+                <FontAwesomeIcon icon={faRocket} />
+                Запустить проект
+              </button>
+              <button className={styles.secondaryButton}>
+                <FontAwesomeIcon icon={faPlay} />
+                Смотреть демо
+              </button>
+            </div>
           </div>
-          <div className={styles.heroImage}>
+          <div className={styles.heroVisual}>
             <div className={styles.emailInterface}>
               <div className={styles.emailHeader}>
-                <div className={styles.emailInfo}>
-                  <span className={styles.emailFrom}>От: client@example.com</span>
-                  <span className={styles.emailSubject}>Вопрос о доставке заказа #12345</span>
+                <div className={styles.botAvatar}>
+                  <FontAwesomeIcon icon={faEnvelope} />
                 </div>
-                <div className={styles.emailStatus}>
+                <div className={styles.botInfo}>
+                  <h3>AI Автоответчик</h3>
+                  <span>Обработка...</span>
+                </div>
+              </div>
+              <div className={styles.emailStatus}>
+                <div className={styles.emailIndicator}>
+                  <FontAwesomeIcon icon={faEye} />
+                  <span>Обработка письма...</span>
+                </div>
+                <div className={styles.emailTimer}>00:15</div>
+              </div>
+              <div className={styles.emailActions}>
+                <button className={styles.emailButton}>
                   <FontAwesomeIcon icon={faCheckCircle} />
-                  <span>Обработано</span>
-                </div>
+                </button>
+                <button className={styles.muteButton}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} />
+                </button>
+                <button className={styles.endEmailButton}>
+                  <FontAwesomeIcon icon={faChartBar} />
+                </button>
               </div>
-              <div className={styles.emailContent}>
-                <p>Здравствуйте! У меня есть вопрос по поводу доставки заказа #12345...</p>
+            </div>
+            <div className={styles.floatingElements}>
+              <div className={styles.floatingIcon}>
+                <FontAwesomeIcon icon={faBrain} />
               </div>
-              <div className={styles.autoReply}>
-                <div className={styles.replyHeader}>
-                  <FontAwesomeIcon icon={faRobot} />
-                  <span>Автоматический ответ</span>
-                </div>
-                <p>Спасибо за ваш запрос! Мы проверим статус вашего заказа и свяжемся с вами в течение 2 часов.</p>
+              <div className={styles.floatingIcon}>
+                <FontAwesomeIcon icon={faLightbulb} />
+              </div>
+              <div className={styles.floatingIcon}>
+                <FontAwesomeIcon icon={faStar} />
               </div>
             </div>
           </div>
         </div>
+        <div className={styles.heroBackground}>
+          <div className={styles.gradientOrb}></div>
+          <div className={styles.gradientOrb}></div>
+          <div className={styles.gradientOrb}></div>
+        </div>
       </section>
 
-      {/* Capabilities Section */}
-      <section className={styles.capabilitiesSection}>
+      {/* Features Section */}
+      <section className={styles.featuresSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Возможности</h2>
-          <div className={styles.capabilitiesGrid}>
-            <div className={styles.capabilityCard}>
-              <div className={styles.capabilityIcon}>
-                <FontAwesomeIcon icon={faReply} />
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Почему выбирают наш AI автоответчик</h2>
+            <p className={styles.sectionSubtitle}>
+              Инновационные технологии обработки email и автоматической генерации ответов
+            </p>
+          </div>
+          <div className={styles.featuresGrid}>
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`${styles.featureCard} ${activeFeature === index ? styles.active : ''}`}
+                onMouseEnter={() => setActiveFeature(index)}
+              >
+                <div className={styles.featureIcon}>
+                  <FontAwesomeIcon icon={feature.icon} />
+                </div>
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDescription}>{feature.description}</p>
+                <div className={styles.featureArrow}>
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </div>
               </div>
-              <h3>Автоматические ответы</h3>
-              <p>Мгновенные ответы на типовые вопросы клиентов с персонализированным подходом</p>
-            </div>
-            <div className={styles.capabilityCard}>
-              <div className={styles.capabilityIcon}>
-                <FontAwesomeIcon icon={faFilter} />
-              </div>
-              <h3>Классификация писем</h3>
-              <p>Автоматическое определение типа запроса и направление к нужному специалисту</p>
-            </div>
-            <div className={styles.capabilityCard}>
-              <div className={styles.capabilityIcon}>
-                <FontAwesomeIcon icon={faDatabase} />
-              </div>
-              <h3>Интеграция с CRM</h3>
-              <p>Синхронизация данных о клиентах и истории взаимодействий</p>
-            </div>
-            <div className={styles.capabilityCard}>
-              <div className={styles.capabilityIcon}>
-                <FontAwesomeIcon icon={faCog} />
-              </div>
-              <h3>Настройка сценариев</h3>
-              <p>Гибкая настройка правил обработки под специфику вашего бизнеса</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -111,60 +225,49 @@ const EmailBotPage = () => {
       {/* Benefits Section */}
       <section className={styles.benefitsSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Выгоды</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Конкретные результаты для вашего бизнеса</h2>
+            <p className={styles.sectionSubtitle}>
+              Измеримые улучшения, которые вы увидите уже в первый месяц
+            </p>
+          </div>
           <div className={styles.benefitsGrid}>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <FontAwesomeIcon icon={faClock} />
+            {benefits.map((benefit, index) => (
+              <div key={index} className={styles.benefitCard}>
+                <div className={styles.benefitIcon}>
+                  <FontAwesomeIcon icon={benefit.icon} />
+                </div>
+                <div className={styles.benefitMetric}>{benefit.metric}</div>
+                <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+                <p className={styles.benefitDescription}>{benefit.description}</p>
               </div>
-              <h3>Сокращение времени обработки</h3>
-              <p>Автоматическая обработка до 70% входящих писем без участия человека</p>
-            </div>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <FontAwesomeIcon icon={faCheckCircle} />
-              </div>
-              <h3>Минимизация пропущенных писем</h3>
-              <p>Гарантированный ответ на каждое обращение клиента в течение 5 минут</p>
-            </div>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <FontAwesomeIcon icon={faUsers} />
-              </div>
-              <h3>Разгрузка сотрудников</h3>
-              <p>Сотрудники фокусируются на сложных задачах, а не на рутинных ответах</p>
-            </div>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <FontAwesomeIcon icon={faChartLine} />
-              </div>
-              <h3>Повышение качества сервиса</h3>
-              <p>Быстрые и точные ответы повышают удовлетворенность клиентов</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Cases Section */}
-      <section className={styles.casesSection}>
+      {/* Use Cases Section */}
+      <section className={styles.useCasesSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Кейсы</h2>
-          <div className={styles.casesGrid}>
-            <div className={styles.caseCard}>
-              <div className={styles.caseNumber}>70%</div>
-              <h3>Автоматическая обработка</h3>
-              <p>E-commerce компания автоматизировала обработку 70% входящих писем</p>
-            </div>
-            <div className={styles.caseCard}>
-              <div className={styles.caseNumber}>5 мин</div>
-              <h3>Время ответа</h3>
-              <p>Среднее время ответа на запросы клиентов сократилось с 4 часов до 5 минут</p>
-            </div>
-            <div className={styles.caseCard}>
-              <div className={styles.caseNumber}>+35%</div>
-              <h3>Удовлетворенность</h3>
-              <p>Повышение удовлетворенности клиентов благодаря быстрым ответам</p>
-            </div>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Применение в различных отраслях</h2>
+            <p className={styles.sectionSubtitle}>
+              Наш AI автоответчик успешно работает в самых разных сферах бизнеса
+            </p>
+          </div>
+          <div className={styles.useCasesGrid}>
+            {useCases.map((useCase, index) => (
+              <div key={index} className={styles.useCaseCard}>
+                <div className={styles.useCaseIcon}>
+                  <FontAwesomeIcon icon={useCase.icon} />
+                </div>
+                <h3 className={styles.useCaseTitle}>{useCase.title}</h3>
+                <p className={styles.useCaseDescription}>{useCase.description}</p>
+                <div className={styles.useCaseArrow}>
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -173,12 +276,41 @@ const EmailBotPage = () => {
       <section className={styles.ctaSection}>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2>Готовы автоматизировать обработку email?</h2>
-            <p>Получите бесплатную демонстрацию и узнайте, как Email Bot может оптимизировать вашу коммуникацию с клиентами</p>
-            <button className={styles.ctaButton}>
-              Попробовать демо
-            </button>
+            <div className={styles.ctaHeader}>
+              <h2 className={styles.ctaTitle}>Готовы автоматизировать обработку email?</h2>
+              <p className={styles.ctaSubtitle}>
+                Присоединяйтесь к сотням компаний, которые уже используют наш AI автоответчик 
+                для повышения качества обслуживания и роста продаж через email
+              </p>
+            </div>
+            <div className={styles.ctaFeatures}>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faRocket} />
+                <span>Запуск за 2 недели</span>
+              </div>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faShieldAlt} />
+                <span>Гарантия результата</span>
+              </div>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faChartLine} />
+                <span>Измеримые результаты</span>
+              </div>
+            </div>
+            <div className={styles.ctaButtons}>
+              <button className={styles.primaryButton}>
+                <FontAwesomeIcon icon={faRocket} />
+                Начать проект
+              </button>
+              <button className={styles.secondaryButton}>
+                <FontAwesomeIcon icon={faPlay} />
+                Смотреть демо
+              </button>
+            </div>
           </div>
+        </div>
+        <div className={styles.ctaBackground}>
+          <div className={styles.gradientOrb}></div>
         </div>
       </section>
     </div>

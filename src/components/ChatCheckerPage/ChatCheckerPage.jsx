@@ -1,111 +1,223 @@
-import React from 'react';
-import styles from './ChatCheckerPage.module.css';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faComments, 
-  faCheckCircle, 
+  faMagic, 
+  faMicrophone, 
+  faBrain, 
   faChartLine, 
+  faUsers, 
+  faClock, 
+  faShieldAlt,
+  faRocket,
   faPlay,
-  faSearch,
-  faUsers,
-  faClock,
+  faArrowRight,
+  faLightbulb,
+  faCog,
+  faStar,
+  faBuilding,
+  faUserGraduate,
+  faCartShopping,
+  faCheckCircle,
+  faExclamationTriangle,
   faEye,
   faChartBar
 } from '@fortawesome/free-solid-svg-icons';
+import styles from './ChatCheckerPage.module.css';
 
 const ChatCheckerPage = () => {
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  const features = [
+    {
+      icon: faBrain,
+      title: "AI Анализ чатов",
+      description: "Продвинутые алгоритмы оценки переписки и выявления ключевых моментов"
+    },
+    {
+      icon: faMagic,
+      title: "Мониторинг сообщений",
+      description: "Автоматическая проверка всех чатов и переписок в реальном времени"
+    },
+    {
+      icon: faMicrophone,
+      title: "Анализ текста",
+      description: "Высокоточное понимание контекста и эмоциональной окраски сообщений"
+    },
+    {
+      icon: faCog,
+      title: "Простая интеграция",
+      description: "Быстрое подключение к вашим мессенджерам и CRM-системам"
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: faUsers,
+      title: "Повышение качества",
+      description: "Улучшение стандартов обслуживания клиентов на основе анализа чатов",
+      metric: "+65%"
+    },
+    {
+      icon: faClock,
+      title: "Быстрая проверка",
+      description: "Автоматический анализ чата за 1-2 минуты вместо часов ручной работы",
+      metric: "1-2 мин"
+    },
+    {
+      icon: faChartLine,
+      title: "Рост эффективности",
+      description: "Увеличение конверсии за счет улучшения качества общения в чатах",
+      metric: "+40%"
+    },
+    {
+      icon: faShieldAlt,
+      title: "Контроль качества",
+      description: "100% покрытие проверки всех чатов без пропусков",
+      metric: "100%"
+    }
+  ];
+
+  const useCases = [
+    {
+      icon: faCartShopping,
+      title: "E-commerce",
+      description: "Проверка качества обслуживания клиентов в онлайн-чатах и выявление проблем"
+    },
+    {
+      icon: faBuilding,
+      title: "Корпоративные услуги",
+      description: "Контроль качества консультаций и соблюдение стандартов общения в чатах"
+    },
+    {
+      icon: faUserGraduate,
+      title: "Образование",
+      description: "Мониторинг качества консультаций и информационных чатов со студентами"
+    },
+    {
+      icon: faBuilding,
+      title: "Здравоохранение",
+      description: "Проверка качества консультаций и записи к врачу через чат-боты"
+    }
+  ];
+
   return (
     <div className={styles.chatCheckerPage}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>
+              <FontAwesomeIcon icon={faMagic} />
+              <span>AI Проверка чатов</span>
+            </div>
             <h1 className={styles.heroTitle}>
-              Проверка чатов (Chat QA)
+              Автоматическая проверка качества чатов
             </h1>
             <p className={styles.heroSubtitle}>
-              Автоматический анализ качества переписки с клиентами, 
-              выявление проблемных ответов и контроль работы операторов
+              Используйте AI для анализа всех текстовых переписок, оценки качества обслуживания 
+              и повышения эффективности вашей команды поддержки
             </p>
+            <div className={styles.heroStats}>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>+65%</div>
+                <div className={styles.statLabel}>Качество</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>-85%</div>
+                <div className={styles.statLabel}>Время проверки</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>100%</div>
+                <div className={styles.statLabel}>Покрытие</div>
+              </div>
+            </div>
             <div className={styles.heroButtons}>
               <button className={styles.primaryButton}>
-                <FontAwesomeIcon icon={faPlay} />
-                Попробовать демо
+                <FontAwesomeIcon icon={faRocket} />
+                Запустить проект
               </button>
               <button className={styles.secondaryButton}>
-                Запросить консультацию
+                <FontAwesomeIcon icon={faPlay} />
+                Смотреть демо
               </button>
             </div>
           </div>
-          <div className={styles.heroImage}>
-            <div className={styles.imageWrapper}>
-              <img src="/images/chat-checker-interface.png" alt="Chat Checker Interface" className={styles.mainImage} />
-              <div className={styles.analysisBubble}>
-                <div className={styles.analysisIcon}>
-                  <FontAwesomeIcon icon={faSearch} />
+          <div className={styles.heroVisual}>
+            <div className={styles.chatInterface}>
+              <div className={styles.chatHeader}>
+                <div className={styles.botAvatar}>
+                  <FontAwesomeIcon icon={faMagic} />
                 </div>
-                <div className={styles.analysisText}>
-                  Анализ чатов...
+                <div className={styles.botInfo}>
+                  <h3>AI Проверка чатов</h3>
+                  <span>Анализ...</span>
                 </div>
+              </div>
+              <div className={styles.chatStatus}>
+                <div className={styles.chatIndicator}>
+                  <FontAwesomeIcon icon={faEye} />
+                  <span>Проверка чата...</span>
+                </div>
+                <div className={styles.chatTimer}>00:32</div>
+              </div>
+              <div className={styles.chatActions}>
+                <button className={styles.chatButton}>
+                  <FontAwesomeIcon icon={faCheckCircle} />
+                </button>
+                <button className={styles.muteButton}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} />
+                </button>
+                <button className={styles.endChatButton}>
+                  <FontAwesomeIcon icon={faChartBar} />
+                </button>
+              </div>
+            </div>
+            <div className={styles.floatingElements}>
+              <div className={styles.floatingIcon}>
+                <FontAwesomeIcon icon={faBrain} />
+              </div>
+              <div className={styles.floatingIcon}>
+                <FontAwesomeIcon icon={faLightbulb} />
+              </div>
+              <div className={styles.floatingIcon}>
+                <FontAwesomeIcon icon={faStar} />
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.heroOverlay}></div>
+        <div className={styles.heroBackground}>
+          <div className={styles.gradientOrb}></div>
+          <div className={styles.gradientOrb}></div>
+          <div className={styles.gradientOrb}></div>
+        </div>
       </section>
 
-      {/* Functionality Section */}
-      <section className={styles.functionalitySection}>
+      {/* Features Section */}
+      <section className={styles.featuresSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Функционал</h2>
-          <div className={styles.functionalityGrid}>
-            <div className={styles.functionalityCard}>
-              <div className={styles.functionalityIcon}>
-                <FontAwesomeIcon icon={faComments} />
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Почему выбирают наш AI проверщик чатов</h2>
+            <p className={styles.sectionSubtitle}>
+              Инновационные технологии анализа текста и автоматической оценки качества
+            </p>
+          </div>
+          <div className={styles.featuresGrid}>
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`${styles.featureCard} ${activeFeature === index ? styles.active : ''}`}
+                onMouseEnter={() => setActiveFeature(index)}
+              >
+                <div className={styles.featureIcon}>
+                  <FontAwesomeIcon icon={feature.icon} />
+                </div>
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDescription}>{feature.description}</p>
+                <div className={styles.featureArrow}>
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </div>
               </div>
-              <h3>Анализ чатов</h3>
-              <p>
-                Автоматический анализ всех диалогов с клиентами в реальном времени, 
-                оценка качества ответов и соблюдения стандартов обслуживания
-              </p>
-              <ul className={styles.functionalityList}>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Анализ тональности сообщений</li>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Проверка грамотности ответов</li>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Оценка скорости реакции</li>
-              </ul>
-            </div>
-            
-            <div className={styles.functionalityCard}>
-              <div className={styles.functionalityIcon}>
-                <FontAwesomeIcon icon={faSearch} />
-              </div>
-              <h3>Поиск проблемных ответов</h3>
-              <p>
-                Выявление некорректных, неполных или невежливых ответов, 
-                автоматическое помечание для дальнейшего анализа
-              </p>
-              <ul className={styles.functionalityList}>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Обнаружение грубости</li>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Проверка полноты информации</li>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Анализ эмоциональной окраски</li>
-              </ul>
-            </div>
-            
-            <div className={styles.functionalityCard}>
-              <div className={styles.functionalityIcon}>
-                <FontAwesomeIcon icon={faEye} />
-              </div>
-              <h3>Контроль сотрудников</h3>
-              <p>
-                Мониторинг работы операторов, отслеживание производительности 
-                и выявление областей для улучшения
-              </p>
-              <ul className={styles.functionalityList}>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Индивидуальная статистика</li>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Сравнение с коллегами</li>
-                <li><FontAwesomeIcon icon={faCheckCircle} /> Рекомендации по улучшению</li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -113,102 +225,49 @@ const ChatCheckerPage = () => {
       {/* Benefits Section */}
       <section className={styles.benefitsSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Выгоды</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Конкретные результаты для вашего бизнеса</h2>
+            <p className={styles.sectionSubtitle}>
+              Измеримые улучшения, которые вы увидите уже в первый месяц
+            </p>
+          </div>
           <div className={styles.benefitsGrid}>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <FontAwesomeIcon icon={faUsers} />
+            {benefits.map((benefit, index) => (
+              <div key={index} className={styles.benefitCard}>
+                <div className={styles.benefitIcon}>
+                  <FontAwesomeIcon icon={benefit.icon} />
+                </div>
+                <div className={styles.benefitMetric}>{benefit.metric}</div>
+                <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+                <p className={styles.benefitDescription}>{benefit.description}</p>
               </div>
-              <div className={styles.benefitContent}>
-                <h3>Улучшение сервиса</h3>
-                <p>
-                  Постоянный контроль качества общения с клиентами помогает 
-                  поддерживать высокие стандарты обслуживания
-                </p>
-                <ul className={styles.benefitList}>
-                  <li><FontAwesomeIcon icon={faCheckCircle} /> Стандартизация ответов</li>
-                  <li><FontAwesomeIcon icon={faCheckCircle} /> Повышение удовлетворенности клиентов</li>
-                  <li><FontAwesomeIcon icon={faCheckCircle} /> Снижение количества жалоб</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <FontAwesomeIcon icon={faChartBar} />
-              </div>
-              <div className={styles.benefitContent}>
-                <h3>Контроль сотрудников</h3>
-                <p>
-                  Детальная аналитика по каждому оператору позволяет 
-                  выявлять сильные и слабые стороны команды
-                </p>
-                <ul className={styles.benefitList}>
-                  <li><FontAwesomeIcon icon={faCheckCircle} /> Персонализированное обучение</li>
-                  <li><FontAwesomeIcon icon={faCheckCircle} /> Объективная оценка работы</li>
-                  <li><FontAwesomeIcon icon={faCheckCircle} /> Мотивация к улучшению</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Cases Section */}
-      <section className={styles.casesSection}>
+      {/* Use Cases Section */}
+      <section className={styles.useCasesSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Кейсы</h2>
-          <div className={styles.casesGrid}>
-            <div className={styles.caseCard}>
-              <div className={styles.caseHeader}>
-                <div className={styles.caseIcon}>
-                  <FontAwesomeIcon icon={faUsers} />
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Применение в различных отраслях</h2>
+            <p className={styles.sectionSubtitle}>
+              Наш AI проверщик чатов успешно работает в самых разных сферах бизнеса
+            </p>
+          </div>
+          <div className={styles.useCasesGrid}>
+            {useCases.map((useCase, index) => (
+              <div key={index} className={styles.useCaseCard}>
+                <div className={styles.useCaseIcon}>
+                  <FontAwesomeIcon icon={useCase.icon} />
                 </div>
-                <div className={styles.caseStats}>
-                  <div className={styles.caseNumber}>+40%</div>
-                  <div className={styles.caseLabel}>Удовлетворенность клиентов</div>
-                </div>
-              </div>
-              <h3>E-commerce платформа</h3>
-              <p>
-                Внедрение системы проверки чатов повысило удовлетворенность 
-                клиентов на 40% за счет улучшения качества ответов
-              </p>
-            </div>
-            
-            <div className={styles.caseCard}>
-              <div className={styles.caseHeader}>
-                <div className={styles.caseIcon}>
-                  <FontAwesomeIcon icon={faClock} />
-                </div>
-                <div className={styles.caseStats}>
-                  <div className={styles.caseNumber}>-60%</div>
-                  <div className={styles.caseLabel}>Время обработки жалоб</div>
+                <h3 className={styles.useCaseTitle}>{useCase.title}</h3>
+                <p className={styles.useCaseDescription}>{useCase.description}</p>
+                <div className={styles.useCaseArrow}>
+                  <FontAwesomeIcon icon={faArrowRight} />
                 </div>
               </div>
-              <h3>Банковские услуги</h3>
-              <p>
-                Автоматический контроль качества чатов сократил время 
-                обработки жалоб клиентов на 60%
-              </p>
-            </div>
-            
-            <div className={styles.caseCard}>
-              <div className={styles.caseHeader}>
-                <div className={styles.caseIcon}>
-                  <FontAwesomeIcon icon={faChartLine} />
-                </div>
-                <div className={styles.caseStats}>
-                  <div className={styles.caseNumber}>+25%</div>
-                  <div className={styles.caseLabel}>Эффективность операторов</div>
-                </div>
-              </div>
-              <h3>Страховая компания</h3>
-              <p>
-                Система контроля чатов помогла повысить эффективность 
-                операторов на 25% за счет персонализированного обучения
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -217,21 +276,41 @@ const ChatCheckerPage = () => {
       <section className={styles.ctaSection}>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Готовы улучшить качество чатов?</h2>
-            <p className={styles.ctaSubtitle}>
-              Получите бесплатную демонстрацию системы проверки чатов и 
-              узнайте, как она может повысить качество обслуживания клиентов
-            </p>
+            <div className={styles.ctaHeader}>
+              <h2 className={styles.ctaTitle}>Готовы автоматизировать проверку чатов?</h2>
+              <p className={styles.ctaSubtitle}>
+                Присоединяйтесь к сотням компаний, которые уже используют наш AI проверщик 
+                для повышения качества обслуживания и роста продаж через чаты
+              </p>
+            </div>
+            <div className={styles.ctaFeatures}>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faRocket} />
+                <span>Запуск за 2 недели</span>
+              </div>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faShieldAlt} />
+                <span>Гарантия результата</span>
+              </div>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faChartLine} />
+                <span>Измеримые результаты</span>
+              </div>
+            </div>
             <div className={styles.ctaButtons}>
-              <button className={styles.ctaPrimaryButton}>
-                <FontAwesomeIcon icon={faPlay} />
-                Попробовать демо
+              <button className={styles.primaryButton}>
+                <FontAwesomeIcon icon={faRocket} />
+                Начать проект
               </button>
-              <button className={styles.ctaSecondaryButton}>
-                Запросить консультацию
+              <button className={styles.secondaryButton}>
+                <FontAwesomeIcon icon={faPlay} />
+                Смотреть демо
               </button>
             </div>
           </div>
+        </div>
+        <div className={styles.ctaBackground}>
+          <div className={styles.gradientOrb}></div>
         </div>
       </section>
     </div>

@@ -4,13 +4,26 @@ import styles from './ScrollContainer.module.css';
 
 const ScrollContainer = ({ children }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const sectionsRef = useRef([]);
   const { currentSection, setCurrentSection, isScrolling } = useScrollContext();
 
+  // Проверяем размер экрана
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 1200);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || isMobile) return;
 
     const handleWheel = (e) => {
       e.preventDefault();
@@ -91,10 +104,10 @@ const ScrollContainer = ({ children }) => {
       window.removeEventListener('keydown', handleKeyDown);
       observer.disconnect();
     };
-  }, [currentSection, isScrolling, setCurrentSection]);
+  }, [currentSection, isScrolling, setCurrentSection, isMobile]);
 
   const scrollToSection = (index) => {
-    if (index >= 0 && index < sectionsRef.current.length) {
+    if (index >= 0 && index < sectionsRef.current.length && !isMobile) {
       setCurrentSection(index);
       sectionsRef.current[index]?.scrollIntoView({
         behavior: 'smooth',
@@ -103,40 +116,42 @@ const ScrollContainer = ({ children }) => {
     }
   };
 
-  // Добавляем ref к каждому дочернему элементу
+  // Клонируем children и добавляем refs
   const childrenWithRefs = React.Children.map(children, (child, index) => {
     return React.cloneElement(child, {
       ref: (el) => {
         sectionsRef.current[index] = el;
-      },
-      className: `${child.props.className || ''} scroll-snap-section`
+      }
     });
   });
 
   return (
-    <div ref={containerRef} className={styles.scrollContainer}>
-      {/* Progress bar */}
-      <div className={styles.scrollProgress}>
-        <div 
-          className={styles.scrollProgressBar}
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-
-      {/* Scroll indicator */}
-      <div className={styles.scrollIndicator}>
-        {React.Children.map(children, (_, index) => (
-          <div
-            key={index}
-            className={`${styles.scrollDot} ${currentSection === index ? styles.active : ''}`}
-            onClick={() => scrollToSection(index)}
-            title={`Перейти к секции ${index + 1}`}
+    <div className={styles.scrollContainer} ref={containerRef}>
+      {/* Прогресс-бар скролла */}
+      {!isMobile && (
+        <div className={styles.scrollProgress}>
+          <div 
+            className={styles.scrollProgressBar} 
+            style={{ width: `${scrollProgress}%` }}
           />
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className={styles.content}>
+        </div>
+      )}
+      
+      {/* Индикатор секций */}
+      {!isMobile && (
+        <div className={styles.scrollIndicator}>
+          {sectionsRef.current.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.scrollDot} ${currentSection === index ? styles.active : ''}`}
+              onClick={() => scrollToSection(index)}
+              aria-label={`Перейти к секции ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
+      
+      <div className={styles.scrollContent}>
         {childrenWithRefs}
       </div>
     </div>

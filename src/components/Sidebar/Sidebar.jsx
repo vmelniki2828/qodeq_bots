@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useScrollContext } from '../../contexts/ScrollContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faHome, 
@@ -16,9 +17,26 @@ import styles from './Sidebar.module.css';
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { scrollToHome } = useScrollContext();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleHomeClick = (e) => {
+    console.log('Клик по кнопке Главная в сайдбаре');
+    console.log('Текущий путь:', location.pathname);
+    console.log('scrollToHome функция:', scrollToHome);
+    
+    if (location.pathname === '/') {
+      console.log('Мы на главной, выполняем scrollToHome');
+      e.preventDefault();
+      scrollToHome();
+    } else {
+      console.log('Мы не на главной, Link должен работать');
+    }
+    setIsOpen(false);
   };
 
   return (
@@ -45,6 +63,7 @@ const Sidebar = () => {
               <Link 
                 to="/" 
                 className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`}
+                // onClick={handleHomeClick}
               >
                 <div className={styles.iconContainer}>
                   <FontAwesomeIcon icon={faHome} className={styles.icon} />
@@ -57,6 +76,7 @@ const Sidebar = () => {
               <Link 
                 to="/technologies" 
                 className={`${styles.navLink} ${location.pathname === '/technologies' ? styles.active : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 <div className={styles.iconContainer}>
                   <FontAwesomeIcon icon={faCode} className={styles.icon} />
@@ -69,6 +89,7 @@ const Sidebar = () => {
               <Link 
                 to="/reviews" 
                 className={`${styles.navLink} ${location.pathname === '/reviews' ? styles.active : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 <div className={styles.iconContainer}>
                   <FontAwesomeIcon icon={faStar} className={styles.icon} />
@@ -81,6 +102,7 @@ const Sidebar = () => {
               <Link 
                 to="/cases" 
                 className={`${styles.navLink} ${location.pathname === '/cases' ? styles.active : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 <div className={styles.iconContainer}>
                   <FontAwesomeIcon icon={faBriefcase} className={styles.icon} />
@@ -93,6 +115,7 @@ const Sidebar = () => {
               <Link 
                 to="/prices" 
                 className={`${styles.navLink} ${location.pathname === '/prices' ? styles.active : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 <div className={styles.iconContainer}>
                   <FontAwesomeIcon icon={faFileInvoiceDollar} className={styles.icon} />
@@ -105,6 +128,7 @@ const Sidebar = () => {
               <Link 
                 to="/contacts" 
                 className={`${styles.navLink} ${location.pathname === '/contacts' ? styles.active : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 <div className={styles.iconContainer}>
                   <FontAwesomeIcon icon={faPhoneAlt} className={styles.icon} />

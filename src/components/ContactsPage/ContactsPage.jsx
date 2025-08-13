@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ContactsPage.module.css';
+import ScrollContainer from '../ScrollContainer/ScrollContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faEnvelope, 
@@ -8,7 +9,11 @@ import {
   faClock,
   faRocket,
   faPlay,
-  faComments,
+  faUser,
+  faBuilding,
+  faMessage,
+  faCheckCircle,
+  faHeadset
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faTelegram, 
@@ -17,6 +22,43 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const ContactsPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Имитация отправки формы
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        message: ''
+      });
+    }, 2000);
+  };
+
   const contactInfo = [
     {
       icon: faPhone,
@@ -62,11 +104,30 @@ const ContactsPage = () => {
     { icon: faVk, href: '#', label: 'VKontakte' }
   ];
 
+  const features = [
+    {
+      icon: faRocket,
+      title: 'Быстрый старт',
+      description: 'Внедрение за 2-4 недели'
+    },
+    {
+      icon: faCheckCircle,
+      title: 'Гарантия результата',
+      description: '14 дней бесплатно'
+    },
+    {
+      icon: faHeadset,
+      title: 'Поддержка 24/7',
+      description: 'Всегда на связи'
+    }
+  ];
+
   return (
-    <div className={styles.contactsPage}>
+    <ScrollContainer>
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroBackground}>
+          <div className={styles.gradientOrb}></div>
           <div className={styles.gradientOrb}></div>
           <div className={styles.gradientOrb}></div>
         </div>
@@ -80,8 +141,25 @@ const ContactsPage = () => {
               Готовы увеличить прибыль?
             </h1>
             <p className={styles.heroSubtitle}>
-              Получите бесплатную консультацию и демо наших AI-решений
+              Получите бесплатную консультацию и демо наших AI-решений. Наша команда экспертов готова помочь вам выбрать оптимальное решение для вашего бизнеса.
             </p>
+            <div className={styles.heroStats}>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>24ч</div>
+                <div className={styles.statLabel}>Ответ</div>
+                <div className={styles.statDescription}>Время реакции</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>95%</div>
+                <div className={styles.statLabel}>Успех</div>
+                <div className={styles.statDescription}>Проектов</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>14дн</div>
+                <div className={styles.statLabel}>Пробный период</div>
+                <div className={styles.statDescription}>Бесплатно</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -92,93 +170,161 @@ const ContactsPage = () => {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Оставьте заявку</h2>
             <p className={styles.sectionSubtitle}>
-              Мы свяжемся с вами в течение 24 часов
+              Мы свяжемся с вами в течение 24 часов и ответим на все вопросы
             </p>
           </div>
           
           <div className={styles.contactGrid}>
             <div className={styles.contactForm}>
-              <form>
-                <div className={styles.formRow}>
-                  <input 
-                    type="text" 
-                    placeholder="Имя" 
-                    className={styles.formInput}
-                    required
-                  />
-                  <input 
-                    type="email" 
-                    placeholder="Email" 
-                    className={styles.formInput}
-                    required
-                  />
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="name">Имя *</label>
+                      <div className={styles.inputWrapper}>
+                        <FontAwesomeIcon icon={faUser} />
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          placeholder="Ваше имя"
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="email">Email *</label>
+                      <div className={styles.inputWrapper}>
+                        <FontAwesomeIcon icon={faEnvelope} />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="company">Компания</label>
+                      <div className={styles.inputWrapper}>
+                        <FontAwesomeIcon icon={faBuilding} />
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          placeholder="Название компании"
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="phone">Телефон</label>
+                      <div className={styles.inputWrapper}>
+                        <FontAwesomeIcon icon={faPhone} />
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="+7 (999) 123-45-67"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.formGroup}>
+                    <label htmlFor="message">Сообщение *</label>
+                    <div className={styles.inputWrapper}>
+                      <FontAwesomeIcon icon={faMessage} />
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows="4"
+                        placeholder="Опишите ваши задачи или вопросы..."
+                      />
+                    </div>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    className={styles.submitButton}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <FontAwesomeIcon icon={faPlay} />
+                        <span>Отправляем...</span>
+                      </>
+                    ) : (
+                      <>
+                        <FontAwesomeIcon icon={faRocket} />
+                        <span>Отправить заявку</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+              ) : (
+                <div className={styles.successMessage}>
+                  <FontAwesomeIcon icon={faCheckCircle} />
+                  <h3>Заявка отправлена!</h3>
+                  <p>Мы свяжемся с вами в течение 24 часов. Спасибо за обращение!</p>
+                  <button 
+                    onClick={() => setIsSubmitted(false)}
+                    className={styles.newRequestButton}
+                  >
+                    Отправить еще одну заявку
+                  </button>
                 </div>
-                <div className={styles.formRow}>
-                  <input 
-                    type="tel" 
-                    placeholder="Телефон" 
-                    className={styles.formInput}
-                  />
-                  <input 
-                    type="text" 
-                    placeholder="Компания" 
-                    className={styles.formInput}
-                  />
-                </div>
-                <textarea 
-                  placeholder="Опишите ваши задачи" 
-                  className={styles.formTextarea}
-                  rows="4"
-                  required
-                ></textarea>
-                <button type="submit" className={styles.submitButton}>
-                  <FontAwesomeIcon icon={faRocket} />
-                  Отправить заявку
-                </button>
-              </form>
+              )}
             </div>
             
             <div className={styles.contactInfo}>
-              {contactInfo.map((contact, index) => (
-                <div key={index} className={styles.contactCard}>
-                  <div className={styles.contactHeader}>
+              <h3>Контактная информация</h3>
+              <div className={styles.contactList}>
+                {contactInfo.map((contact, index) => (
+                  <div key={index} className={styles.contactItem}>
                     <div className={styles.contactIcon}>
                       <FontAwesomeIcon icon={contact.icon} />
                     </div>
-                    <div>
-                      <h3 className={styles.contactTitle}>{contact.title}</h3>
-                      <p className={styles.contactDescription}>{contact.description}</p>
+                    <div className={styles.contactDetails}>
+                      <h4>{contact.title}</h4>
+                      <p>{contact.description}</p>
+                      {contact.details.map((detail, detailIndex) => (
+                        <div key={detailIndex} className={styles.contactDetail}>
+                          {detail}
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  <div className={styles.contactDetails}>
-                    {contact.details.map((detail, detailIndex) => (
-                      <div key={detailIndex} className={styles.contactDetail}>
-                        <span>{detail}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
               
-              <div className={styles.contactCard}>
-                <div className={styles.contactHeader}>
-                  <div className={styles.contactIcon}>
-                    <FontAwesomeIcon icon={faComments} />
-                  </div>
-                  <div>
-                    <h3 className={styles.contactTitle}>Социальные сети</h3>
-                    <p className={styles.contactDescription}>Следите за нашими новостями</p>
-                  </div>
-                </div>
+              <div className={styles.socialSection}>
+                <h4>Мы в соцсетях</h4>
                 <div className={styles.socialLinks}>
                   {socialLinks.map((social, index) => (
                     <a 
                       key={index} 
                       href={social.href} 
                       className={styles.socialLink}
-                      aria-label={social.label}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <FontAwesomeIcon icon={social.icon} />
+                      <span>{social.label}</span>
                     </a>
                   ))}
                 </div>
@@ -188,49 +334,72 @@ const ContactsPage = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className={styles.mapSection}>
+      {/* Features Section */}
+      <section className={styles.featuresSection}>
         <div className={styles.container}>
-          <div className={styles.mapContainer}>
-            <div className={styles.mapPlaceholder}>
-              <FontAwesomeIcon icon={faMapMarkerAlt} />
-              <span>Карта будет загружена</span>
-            </div>
-            <div className={styles.mapOverlay}>
-              <div className={styles.mapInfo}>
-                <div className={styles.mapIcon}>
-                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Почему выбирают нас</h2>
+            <p className={styles.sectionSubtitle}>
+              Мы гарантируем качество и результат каждого проекта
+            </p>
+          </div>
+          
+          <div className={styles.featuresGrid}>
+            {features.map((feature, index) => (
+              <div key={index} className={styles.featureCard}>
+                <div className={styles.featureIcon}>
+                  <FontAwesomeIcon icon={feature.icon} />
                 </div>
-                <div className={styles.mapDetails}>
-                  <h4>Наш офис</h4>
-                  <p>Москва, ул. Тверская, 1<br />Бизнес-центр "Тверской"</p>
-                </div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className={styles.ctaSection}>
+        <div className={styles.ctaBackground}>
+          <div className={styles.gradientOrb}></div>
+          <div className={styles.gradientOrb}></div>
+        </div>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2>Нужна помощь в выборе?</h2>
-            <p>Наши эксперты помогут подобрать оптимальное решение для вашего бизнеса</p>
+            <div className={styles.ctaHeader}>
+              <h2 className={styles.ctaTitle}>Готовы начать?</h2>
+              <p className={styles.ctaSubtitle}>
+                Свяжитесь с нами прямо сейчас и получите персональное предложение для вашего бизнеса
+              </p>
+            </div>
+            <div className={styles.ctaFeatures}>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faCheckCircle} />
+                <span>Бесплатная консультация</span>
+              </div>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faCheckCircle} />
+                <span>Демо-версия</span>
+              </div>
+              <div className={styles.ctaFeature}>
+                <FontAwesomeIcon icon={faCheckCircle} />
+                <span>Техническая поддержка</span>
+              </div>
+            </div>
             <div className={styles.ctaButtons}>
               <button className={styles.primaryButton}>
                 <FontAwesomeIcon icon={faRocket} />
-                Получить консультацию
+                <span>Получить консультацию</span>
               </button>
               <button className={styles.secondaryButton}>
                 <FontAwesomeIcon icon={faPlay} />
-                Смотреть демо
+                <span>Смотреть демо</span>
               </button>
             </div>
           </div>
         </div>
       </section>
-    </div>
+    </ScrollContainer>
   );
 };
 
